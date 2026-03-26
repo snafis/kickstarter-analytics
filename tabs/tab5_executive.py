@@ -7,6 +7,7 @@ from db.executor import run_query
 import db.queries as Q
 from visualizations.campaign_duration import campaign_duration
 from visualizations.category_performance import category_performance
+from visualizations.pledge_per_backer import pledge_per_backer
 
 
 def render() -> None:
@@ -39,20 +40,20 @@ def render() -> None:
 
     c1, c2, c3, c4 = st.columns(4)
     with c1:
-        metric_card(avg_goal, "Avg Successful Goal", color="#34C759")
+        metric_card(avg_goal, "Avg Successful Goal")
     with c2:
-        metric_card(avg_backers, "Avg Backers to Succeed", color="#007AFF")
+        metric_card(avg_backers, "Avg Backers to Succeed")
     with c3:
-        metric_card(tab_pledged, "Tabletop Avg Pledged", color="#5856D6")
+        metric_card(tab_pledged, "Tabletop Avg Pledged")
     with c4:
-        metric_card("31–61 days", "Sweet Spot Duration", color="#FF9500")
+        metric_card("31–61 days", "Sweet Spot Duration")
 
     st.markdown("---")
 
     # ── Evidence charts ────────────────────────────────────────────────────────
     st.markdown('<div class="section-heading">Supporting Evidence</div>', unsafe_allow_html=True)
 
-    col_left, col_right = st.columns(2)
+    col_left, col_mid, col_right = st.columns(3)
     with col_left:
         st.markdown("**Category performance (money raised)**")
         df_cat = run_query(Q.VIZ_CATEGORY_PERFORMANCE)
@@ -61,6 +62,9 @@ def render() -> None:
             use_container_width=True,
             key="tab5_cat",
         )
+    with col_mid:
+        st.markdown("**Avg pledge per backer — by category**")
+        st.plotly_chart(pledge_per_backer(df_cat), use_container_width=True, key="tab5_pledge")
     with col_right:
         st.markdown("**Duration sweet spot**")
         df_dur = run_query(Q.VIZ_DURATION_LINE)

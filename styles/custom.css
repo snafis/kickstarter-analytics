@@ -55,37 +55,42 @@ figcaption {
 }
 
 .hero-subtitle {
-    font-size: 17px;
-    color: #6E6E73;
-    margin-top: 10px;
-    line-height: 1.7;
-    font-style: italic;
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    color: #3A3A3C;
+    margin-top: 14px;
+    line-height: 1.75;
 }
 
 /* ── Metric cards ─────────────────────────────────────────────────────────── */
 .metric-card {
     background: #FFFFFF;
-    border: 1px solid #E5E5EA;
-    border-radius: 12px;
-    padding: 20px 24px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
-    text-align: center;
+    border: none;
+    border-radius: 0;
+    padding: 20px 0 24px 0;
+    box-shadow: none;
+    text-align: left;
 }
 
 .metric-card .metric-value {
     font-family: 'Playfair Display', Georgia, serif;
-    font-size: 28px;
+    font-size: 30px;
     font-weight: 700;
-    color: #007AFF;
+    color: #1D1D1F;
     letter-spacing: -0.5px;
-    line-height: 1.2;
+    line-height: 1.15;
 }
 
 .metric-card .metric-label {
-    font-size: 13px;
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     color: #6E6E73;
-    margin-top: 4px;
-    font-style: italic;
+    margin-top: 6px;
 }
 
 /* ── Insight callout ──────────────────────────────────────────────────────── */
@@ -129,24 +134,26 @@ figcaption {
 
 /* ── Hero section ─────────────────────────────────────────────────────────── */
 .hero-container {
-    background: linear-gradient(135deg, #F5F5F7 0%, #FFFFFF 100%);
-    border: 1px solid #E5E5EA;
-    border-radius: 16px;
-    padding: 32px 40px;
-    margin-bottom: 32px;
+    background: none;
+    border: none;
+    padding: 8px 0 32px 0;
+    margin-bottom: 0;
 }
 
 /* ── Tab bar labels ───────────────────────────────────────────────────────── */
 div[data-testid="stTabs"] button {
-    font-size: 13px;
-    font-weight: normal;
-    font-style: italic;
-    letter-spacing: 0.1px;
+    font-family: 'Lato', sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase !important;
+    color: #6E6E73 !important;
 }
 
 div[data-testid="stTabs"] button[aria-selected="true"] {
-    font-weight: bold;
-    font-style: normal;
+    font-weight: 700 !important;
+    color: #1D1D1F !important;
 }
 
 /* ── Streamlit native metric widget ──────────────────────────────────────── */
@@ -185,4 +192,79 @@ div[data-testid="stDataFrame"] th {
 code, pre, .stCode {
     font-family: "JetBrains Mono", "Fira Code", monospace !important;
     font-size: 13px !important;
+}
+
+/* ── Ace editor font ──────────────────────────────────────────────────────── */
+.ace_editor, .ace_editor * {
+    font-family: "JetBrains Mono", "Fira Code", monospace !important;
+}
+
+/* ── Tab 4 visualization layout ──────────────────────────────────────────── */
+.viz-headline {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #1D1D1F;
+    letter-spacing: -0.3px;
+    line-height: 1.2;
+    margin-bottom: 16px;
+}
+
+.viz-chart-title {
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #1D1D1F;
+    margin-top: 12px;
+    margin-bottom: 4px;
+}
+
+.viz-chart-context {
+    font-family: 'Lato', sans-serif;
+    font-size: 12px;
+    color: #6E6E73;
+    line-height: 1.6;
+}
+
+.viz-panel {
+    padding: 4px 0 0 32px;
+    border-left: 1px solid #E5E5EA;
+    height: 100%;
+}
+
+.viz-num {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 52px;
+    font-weight: 700;
+    color: #1D1D1F;
+    letter-spacing: -2px;
+    line-height: 1;
+    margin-bottom: 32px;
+}
+
+.viz-label {
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #AEAEB2;
+    margin-bottom: 10px;
+}
+
+.viz-insight-text {
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #1D1D1F;
+    line-height: 1.55;
+    margin-bottom: 28px;
+}
+
+.viz-action-text {
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #3A3A3C;
+    line-height: 1.6;
 }

@@ -11,20 +11,22 @@ def histogram_goals(df: pd.DataFrame) -> go.Figure:
 
     fig = go.Figure()
 
+    # Failed rendered first (behind), muted — provides context
     fig.add_trace(go.Histogram(
         x=failed,
         name="Failed",
-        marker_color=COLORS["danger"],
-        opacity=0.6,
+        marker_color=COLORS["accent_muted"],
+        opacity=0.9,
         xbins=dict(start=0, end=500_000, size=10_000),
         hovertemplate="Goal range: $%{x:,.0f}<br>Count: %{y}<extra>Failed</extra>",
     ))
 
+    # Successful rendered on top, accent — carries the argument
     fig.add_trace(go.Histogram(
         x=success,
         name="Successful",
-        marker_color=COLORS["success"],
-        opacity=0.6,
+        marker_color=COLORS["primary"],
+        opacity=0.9,
         xbins=dict(start=0, end=500_000, size=10_000),
         hovertemplate="Goal range: $%{x:,.0f}<br>Count: %{y}<extra>Successful</extra>",
     ))

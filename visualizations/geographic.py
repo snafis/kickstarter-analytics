@@ -8,11 +8,21 @@ def geographic_bar(df: pd.DataFrame) -> go.Figure:
     """Grouped bar: top countries by total pledged and campaign count."""
     fig = go.Figure()
 
+    # US gets accent; all other countries get muted tint (Tufte accent principle)
+    pledged_colors = [
+        COLORS["primary"] if c == "US" else COLORS["accent_muted"]
+        for c in df["country"]
+    ]
+    count_colors = [
+        COLORS["primary"] if c == "US" else COLORS["accent_bg"]
+        for c in df["country"]
+    ]
+
     fig.add_trace(go.Bar(
         name="Total Pledged (USD)",
         x=df["country"],
         y=df["total_pledged"],
-        marker_color=COLORS["primary"],
+        marker_color=pledged_colors,
         yaxis="y",
         hovertemplate="%{x}<br>Pledged: $%{y:,.0f}<extra></extra>",
     ))
@@ -21,7 +31,7 @@ def geographic_bar(df: pd.DataFrame) -> go.Figure:
         name="Campaign Count",
         x=df["country"],
         y=df["campaign_count"],
-        marker_color=COLORS["indigo"],
+        marker_color=count_colors,
         yaxis="y2",
         hovertemplate="%{x}<br>Campaigns: %{y:,}<extra></extra>",
     ))

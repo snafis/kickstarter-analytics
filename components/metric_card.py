@@ -3,7 +3,7 @@
 import streamlit as st
 
 
-def metric_card(value: str, label: str, color: str = "#007AFF") -> None:
+def metric_card(value: str, label: str, color: str = "#1D1D1F") -> None:
     """Render a single metric card."""
     st.markdown(
         f"""

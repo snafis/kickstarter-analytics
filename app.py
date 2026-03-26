@@ -32,11 +32,11 @@ from tabs import (
 )
 
 tab_labels = [
-    "🌍 Context",
-    "🔧 Data Collection & Prep",
-    "🔍 Data Analysis",
-    "📊 Synthesis & Visualization",
-    "📋 Executive Summary",
+    "Context",
+    "Data Collection",
+    "Analysis",
+    "Synthesis",
+    "Executive Summary",
 ]
 
 tabs = st.tabs(tab_labels)

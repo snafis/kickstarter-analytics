@@ -46,10 +46,9 @@ def sql_cell(
     edited = st_ace(
         value=st.session_state[sql_key],
         language="sql",
-        theme="github",
+        theme="xcode",
         keybinding="vscode",
         font_size=13,
-        font_family="JetBrains Mono, Fira Code, monospace",
         tab_size=4,
         show_gutter=True,
         show_print_margin=False,

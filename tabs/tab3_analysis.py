@@ -70,12 +70,12 @@ def render() -> None:
             Q.Q2_BOTTOM_SUBCATEGORIES_BACKERS,
             editable=True,
             auto_run=True,
+            insight=(
+                "<strong>Finding:</strong> Games dominates backer counts, with Tabletop Games and Video Games "
+                "leading subcategories. Crafts, Journalism, and Dance attract the fewest backers — likely due "
+                "to niche audiences and lower digital virality."
+            ),
         )
-
-    st.markdown(
-        '<div class="insight-callout"><strong>Finding:</strong> Games dominates backer counts, with Tabletop Games and Video Games leading subcategories. Crafts, Journalism, and Dance attract the fewest backers — likely due to niche audiences and lower digital virality.</div>',
-        unsafe_allow_html=True,
-    )
 
     st.markdown("---")
 
@@ -116,12 +116,12 @@ def render() -> None:
             Q.Q3_BOTTOM_SUBCATEGORIES_MONEY,
             editable=True,
             auto_run=True,
+            insight=(
+                "<strong>Finding:</strong> The same top-3 categories (Games, Technology, Design) lead both "
+                "backers <em>and</em> money raised — strong correlation between audience size and funding. "
+                "Product Design and Tabletop Games lead subcategories for money raised."
+            ),
         )
-
-    st.markdown(
-        '<div class="insight-callout"><strong>Finding:</strong> The same top-3 categories (Games, Technology, Design) lead both backers <em>and</em> money raised — strong correlation between audience size and funding. Product Design and Tabletop Games lead subcategories for money raised.</div>',
-        unsafe_allow_html=True,
-    )
 
     st.markdown("---")
 

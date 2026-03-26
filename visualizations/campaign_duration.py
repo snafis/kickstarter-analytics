@@ -11,12 +11,13 @@ def campaign_duration(df: pd.DataFrame) -> go.Figure:
     # Sweet-spot shaded region (31–61 days)
     fig.add_vrect(
         x0=31, x1=61,
-        fillcolor=COLORS["orange"],
-        opacity=0.08,
+        fillcolor=COLORS["accent_bg"],
+        opacity=1.0,
         line_width=0,
+        layer="below",
         annotation_text="Sweet spot",
         annotation_position="top left",
-        annotation=dict(font_size=11, font_color=COLORS["orange"]),
+        annotation=dict(font_size=11, font_color=COLORS["accent_mid"]),
     )
 
     # Main line

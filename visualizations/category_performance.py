@@ -13,18 +13,18 @@ def category_performance(df: pd.DataFrame, metric: str = "total_raised") -> go.F
 
     df_sorted = df.sort_values(col, ascending=True)
 
-    # Rank-based opacity
-    n = len(df_sorted)
-    opacities = [0.4 + 0.6 * (i / max(n - 1, 1)) for i in range(n)]
+    # Top 3 by rank get accent; remainder get muted tint (Tufte accent principle)
+    top3 = set(df_sorted.nlargest(3, col)["category"])
+    bar_colors = [
+        COLORS["primary"] if cat in top3 else COLORS["accent_muted"]
+        for cat in df_sorted["category"]
+    ]
 
     fig = go.Figure(go.Bar(
         x=df_sorted[col],
         y=df_sorted["category"],
         orientation="h",
-        marker=dict(
-            color=[COLORS["primary"]] * n,
-            opacity=opacities,
-        ),
+        marker=dict(color=bar_colors),
         hovertemplate=f"%{{y}}<br>{label}: %{{x:,.0f}}<extra></extra>",
     ))
 

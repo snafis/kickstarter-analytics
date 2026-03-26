@@ -37,7 +37,7 @@ def render() -> None:
     with col_chart:
         with st.spinner("Loading scatter data…"):
             df_scatter = run_query(Q.VIZ_SCATTER_DATA)
-        st.plotly_chart(scatter_goal_pledged(df_scatter), use_container_width=True)
+        st.plotly_chart(scatter_goal_pledged(df_scatter), use_container_width=True, key="tab4_scatter")
 
     st.markdown("---")
 
@@ -58,7 +58,7 @@ def render() -> None:
     with col_chart2:
         with st.spinner("Loading histogram data…"):
             df_hist = run_query(Q.VIZ_GOAL_HISTOGRAM)
-        st.plotly_chart(histogram_goals(df_hist), use_container_width=True)
+        st.plotly_chart(histogram_goals(df_hist), use_container_width=True, key="tab4_hist")
 
     st.markdown("---")
 
@@ -86,7 +86,7 @@ def render() -> None:
         with st.spinner("Loading category data…"):
             df_cat = run_query(Q.VIZ_CATEGORY_PERFORMANCE)
         metric_col = "total_raised" if metric_toggle == "Money Raised" else "total_backers"
-        st.plotly_chart(category_performance(df_cat, metric=metric_col), use_container_width=True)
+        st.plotly_chart(category_performance(df_cat, metric=metric_col), use_container_width=True, key="tab4_cat")
 
     st.markdown("---")
 
@@ -107,7 +107,7 @@ def render() -> None:
     with col_chart4:
         with st.spinner("Loading geographic data…"):
             df_geo = run_query(Q.VIZ_GEOGRAPHIC)
-        st.plotly_chart(geographic_bar(df_geo), use_container_width=True)
+        st.plotly_chart(geographic_bar(df_geo), use_container_width=True, key="tab4_geo")
 
     st.markdown("---")
 
@@ -129,4 +129,4 @@ def render() -> None:
     with col_chart5:
         with st.spinner("Loading duration data…"):
             df_dur = run_query(Q.VIZ_DURATION_LINE)
-        st.plotly_chart(campaign_duration(df_dur), use_container_width=True)
+        st.plotly_chart(campaign_duration(df_dur), use_container_width=True, key="tab4_dur")

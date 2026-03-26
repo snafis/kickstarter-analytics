@@ -59,11 +59,12 @@ def render() -> None:
         st.plotly_chart(
             category_performance(df_cat, metric="total_raised"),
             use_container_width=True,
+            key="tab5_cat",
         )
     with col_right:
         st.markdown("**Duration sweet spot**")
         df_dur = run_query(Q.VIZ_DURATION_LINE)
-        st.plotly_chart(campaign_duration(df_dur), use_container_width=True)
+        st.plotly_chart(campaign_duration(df_dur), use_container_width=True, key="tab5_dur")
 
     st.markdown("---")
 

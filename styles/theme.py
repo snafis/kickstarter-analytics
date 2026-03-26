@@ -12,8 +12,9 @@ COLORS = {
 }
 
 PLOTLY_LAYOUT = dict(
-    font_family="-apple-system, 'SF Pro Text', sans-serif",
+    font_family="Lato, sans-serif",
     font_color="#1D1D1F",
+    title_font_family="'Playfair Display', Georgia, serif",
     paper_bgcolor="white",
     plot_bgcolor="white",
     xaxis=dict(showgrid=False, linecolor="#E5E5EA", linewidth=1),
@@ -22,7 +23,7 @@ PLOTLY_LAYOUT = dict(
     hoverlabel=dict(
         bgcolor="white",
         bordercolor="#E5E5EA",
-        font_family="-apple-system, 'SF Pro Text', sans-serif",
+        font_family="Georgia, serif",
         font_size=13,
     ),
 )

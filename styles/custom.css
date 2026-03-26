@@ -1,22 +1,68 @@
-/* SF Pro font stack */
-html, body, [class*="css"] {
-    font-family: -apple-system, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+/* ── Google Fonts ─────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Playfair+Display:wght@600;700&display=swap');
+
+/* ── Base: Lato for all body/paragraph text ───────────────────────────────── */
+html, body, [class*="css"], .stMarkdown, p, li, td, th {
+    font-family: 'Lato', sans-serif;
     -webkit-font-smoothing: antialiased;
+    font-size: 15px;
+    line-height: 1.65;
+    color: #1D1D1F;
 }
 
-/* SQL editor textarea */
-.sql-editor textarea {
-    font-family: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", monospace !important;
-    font-size: 13px !important;
-    background-color: #F5F5F7 !important;
-    border-radius: 8px !important;
-    border: 1px solid #D2D2D7 !important;
-    color: #1D1D1F !important;
-    line-height: 1.6 !important;
-    padding: 12px !important;
+/* ── Headlines & section headers: Playfair Display ───────────────────────── */
+.tab-heading,
+.hero-title,
+.section-heading {
+    font-family: 'Playfair Display', Georgia, serif;
 }
 
-/* Metric cards */
+.tab-heading {
+    font-size: 30px;
+    font-weight: 700;
+    color: #1D1D1F;
+    letter-spacing: -0.3px;
+    margin-bottom: 8px;
+}
+
+.section-heading {
+    font-size: 21px;
+    font-weight: 600;
+    color: #1D1D1F;
+    letter-spacing: -0.2px;
+    margin: 28px 0 8px 0;
+}
+
+.hero-title {
+    font-size: 38px;
+    font-weight: 700;
+    color: #1D1D1F;
+    letter-spacing: -0.5px;
+    line-height: 1.15;
+}
+
+/* ── Subtitles, captions, legends, labels: Georgia ───────────────────────── */
+.hero-subtitle,
+.metric-card .metric-label,
+.insight-callout,
+.quality-issue,
+.quality-fix,
+div[data-testid="stTabs"] button,
+div[data-testid="stCaption"],
+small,
+figcaption {
+    font-family: Georgia, 'Times New Roman', serif;
+}
+
+.hero-subtitle {
+    font-size: 17px;
+    color: #6E6E73;
+    margin-top: 10px;
+    line-height: 1.7;
+    font-style: italic;
+}
+
+/* ── Metric cards ─────────────────────────────────────────────────────────── */
 .metric-card {
     background: #FFFFFF;
     border: 1px solid #E5E5EA;
@@ -27,8 +73,9 @@ html, body, [class*="css"] {
 }
 
 .metric-card .metric-value {
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: 28px;
-    font-weight: 600;
+    font-weight: 700;
     color: #007AFF;
     letter-spacing: -0.5px;
     line-height: 1.2;
@@ -38,10 +85,10 @@ html, body, [class*="css"] {
     font-size: 13px;
     color: #6E6E73;
     margin-top: 4px;
-    font-weight: 400;
+    font-style: italic;
 }
 
-/* Insight callout */
+/* ── Insight callout ──────────────────────────────────────────────────────── */
 .insight-callout {
     background: #F0F4FF;
     border-left: 3px solid #007AFF;
@@ -49,33 +96,17 @@ html, body, [class*="css"] {
     padding: 12px 16px;
     margin: 12px 0;
     font-size: 14px;
+    line-height: 1.6;
     color: #1D1D1F;
-    line-height: 1.5;
 }
 
 .insight-callout strong {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
     color: #007AFF;
 }
 
-/* Tab headings */
-.tab-heading {
-    font-size: 28px;
-    font-weight: 600;
-    letter-spacing: -0.5px;
-    color: #1D1D1F;
-    margin-bottom: 8px;
-}
-
-/* Section headings */
-.section-heading {
-    font-size: 20px;
-    font-weight: 600;
-    color: #1D1D1F;
-    letter-spacing: -0.3px;
-    margin: 24px 0 8px 0;
-}
-
-/* Data quality badge */
+/* ── Data quality badges ──────────────────────────────────────────────────── */
 .quality-issue {
     background: #FFF5F5;
     border-left: 3px solid #FF3B30;
@@ -96,7 +127,7 @@ html, body, [class*="css"] {
     color: #1D1D1F;
 }
 
-/* Hero section */
+/* ── Hero section ─────────────────────────────────────────────────────────── */
 .hero-container {
     background: linear-gradient(135deg, #F5F5F7 0%, #FFFFFF 100%);
     border: 1px solid #E5E5EA;
@@ -105,31 +136,53 @@ html, body, [class*="css"] {
     margin-bottom: 32px;
 }
 
-.hero-title {
-    font-size: 36px;
-    font-weight: 700;
-    color: #1D1D1F;
-    letter-spacing: -1px;
-    line-height: 1.15;
-}
-
-.hero-subtitle {
-    font-size: 17px;
-    color: #6E6E73;
-    margin-top: 8px;
-    line-height: 1.6;
-}
-
-/* Streamlit native overrides */
+/* ── Tab bar labels ───────────────────────────────────────────────────────── */
 div[data-testid="stTabs"] button {
-    font-weight: 500;
-    font-size: 14px;
+    font-size: 13px;
+    font-weight: normal;
+    font-style: italic;
+    letter-spacing: 0.1px;
 }
 
+div[data-testid="stTabs"] button[aria-selected="true"] {
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* ── Streamlit native metric widget ──────────────────────────────────────── */
 div[data-testid="metric-container"] {
     background: #FFFFFF;
     border: 1px solid #E5E5EA;
     border-radius: 12px;
     padding: 16px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+div[data-testid="metric-container"] label {
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 13px;
+    color: #6E6E73;
+}
+
+div[data-testid="metric-container"] [data-testid="stMetricValue"] {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+/* ── Dataframe / table headers ────────────────────────────────────────────── */
+div[data-testid="stDataFrame"] th {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #6E6E73;
+}
+
+/* ── Code blocks (not the Ace editor) ────────────────────────────────────── */
+code, pre, .stCode {
+    font-family: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", monospace !important;
+    font-size: 13px !important;
 }

@@ -48,7 +48,7 @@ def download_dataset() -> Path:
     print("  Downloading Kickstarter dataset from Kaggle...")
     result = subprocess.run(
         [
-            sys.executable, "-m", "kaggle",
+            "kaggle",
             "datasets", "download",
             "-d", "kemical/kickstarter-projects",
             "--unzip",
@@ -205,9 +205,7 @@ def build_database(csv_path: Path) -> None:
         FROM campaign c
         WHERE c.outcome IN ('successful', 'failed')
           AND NOT (c.backers = 0 AND c.pledged > 0)
-          AND c.country_id != (
-              SELECT id FROM country WHERE name = 'N,0"'
-          )
+          AND c.country_id != 17
         """
     )
 
@@ -228,9 +226,9 @@ def build_database(csv_path: Path) -> None:
             c.currency_id,
             c.outcome,
             c.backers,
-            d.days,
-            c.goal * COALESCE(cr.usd_rate, 1.0) AS USD_goal,
-            c.pledged * COALESCE(cr.usd_rate, 1.0) AS USD_pledged
+            ROUND(d.days) AS days,
+            ROUND(c.goal * COALESCE(cr.usd_rate, 1.0), 2) AS USD_goal,
+            ROUND(c.pledged * COALESCE(cr.usd_rate, 1.0), 2) AS USD_pledged
         FROM v_campaign_info c
         JOIN durations d ON c.id = d.id
         LEFT JOIN currency_rate cr ON c.currency_id = cr.currency_id

@@ -8,9 +8,7 @@ SELECT c.*
 FROM campaign c
 WHERE c.outcome IN ('successful', 'failed')
   AND NOT (c.backers = 0 AND c.pledged > 0)
-  AND c.country_id != (
-      SELECT id FROM country WHERE name = 'N,0"'
-  )
+  AND c.country_id != 17
 """
 
 # v_condensed: cleaned campaigns with USD-normalised goal/pledged and duration

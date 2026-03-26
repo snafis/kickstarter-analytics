@@ -133,9 +133,9 @@ def render() -> None:
         Q.Q4_BEST_TABLETOP_GAME,
         description="Find the highest-pledged successful campaign in the Tabletop Games subcategory.",
         insight=(
-            "<strong>Finding:</strong> Gloomhaven (Second Printing) raised <strong>~$3.99M</strong> on a $100K goal "
-            "with ~40,642 backers — a 39× overachievement. Average pledge per backer was ~$98, "
-            "showing high fan commitment to a known IP."
+            "<strong>Finding:</strong> Kingdom Death: Monster 1.5 raised <strong>~$12.4M</strong> on a $100K goal "
+            "with ~19,264 backers — a 124× overachievement. A known IP with a rabid fanbase, "
+            "it shows what's possible when audience, product quality, and platform trust align."
         ),
         editable=True,
         auto_run=True,

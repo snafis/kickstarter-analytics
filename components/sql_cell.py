@@ -13,8 +13,8 @@ def sql_cell(
     sql: str,
     description: str = "",
     insight: str = "",
-    editable: bool = True,
-    auto_run: bool = False,
+    editable: bool = True,   # kept for API compatibility; always editable now
+    auto_run: bool = False,  # kept for API compatibility; ignored
 ) -> None:
     """
     Render an interactive SQL cell.
@@ -26,38 +26,32 @@ def sql_cell(
     sql:         Default SQL text.
     description: Gray helper text shown below the heading.
     insight:     Optional callout text rendered after the result table.
-    editable:    If False, renders sql as st.code (read-only display).
-    auto_run:    If True, runs the query on first render without button click.
+    editable/auto_run: kept for backwards-compatibility, no longer used.
     """
     sql_key = f"sql_{cell_id}"
     result_key = f"result_{cell_id}"
     error_key = f"error_{cell_id}"
 
-    # Initialise state
     if sql_key not in st.session_state:
         st.session_state[sql_key] = sql.strip()
 
     st.markdown(f"**{label}**")
     if description:
-        st.markdown(f'<p style="color:#6E6E73;font-size:14px;margin-top:-8px">{description}</p>', unsafe_allow_html=True)
-
-    if editable:
-        st.session_state[sql_key] = st.text_area(
-            label="SQL",
-            value=st.session_state[sql_key],
-            key=f"area_{cell_id}",
-            height=160,
-            label_visibility="collapsed",
+        st.markdown(
+            f'<p style="color:#6E6E73;font-size:14px;margin-top:-8px">{description}</p>',
+            unsafe_allow_html=True,
         )
-    else:
-        st.code(st.session_state[sql_key], language="sql")
+
+    st.session_state[sql_key] = st.text_area(
+        label="SQL",
+        value=st.session_state[sql_key],
+        key=f"area_{cell_id}",
+        height=160,
+        label_visibility="collapsed",
+    )
 
     col_btn, col_info = st.columns([1, 5])
     run_clicked = col_btn.button("▶ Run Query", key=f"btn_{cell_id}")
-
-    # Auto-run on first load
-    if auto_run and result_key not in st.session_state:
-        run_clicked = True
 
     if run_clicked:
         df, err = safe_run(st.session_state[sql_key])
@@ -68,7 +62,7 @@ def sql_cell(
             st.session_state[result_key] = df
             st.session_state.pop(error_key, None)
 
-    # Render results
+    # Only render results after an explicit Run click
     if error_key in st.session_state:
         st.error(f"SQL Error: {st.session_state[error_key]}")
     elif result_key in st.session_state:

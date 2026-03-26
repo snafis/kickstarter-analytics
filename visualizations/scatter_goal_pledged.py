@@ -13,8 +13,8 @@ def scatter_goal_pledged(df: pd.DataFrame) -> go.Figure:
     fig = go.Figure()
 
     fig.add_trace(go.Scattergl(
-        x=failed["USD_goal"],
-        y=failed["USD_pledged"],
+        x=failed["usd_goal"],
+        y=failed["usd_pledged"],
         mode="markers",
         name="Failed",
         marker=dict(color=COLORS["danger"], size=3, opacity=0.35),
@@ -22,8 +22,8 @@ def scatter_goal_pledged(df: pd.DataFrame) -> go.Figure:
     ))
 
     fig.add_trace(go.Scattergl(
-        x=success["USD_goal"],
-        y=success["USD_pledged"],
+        x=success["usd_goal"],
+        y=success["usd_pledged"],
         mode="markers",
         name="Successful",
         marker=dict(color=COLORS["success"], size=3, opacity=0.45),

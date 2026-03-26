@@ -6,8 +6,8 @@ from styles.theme import COLORS, PLOTLY_LAYOUT
 
 def histogram_goals(df: pd.DataFrame) -> go.Figure:
     """Overlapping goal distribution histogram by outcome (log Y)."""
-    success = df[df["outcome"] == "successful"]["USD_goal"]
-    failed = df[df["outcome"] == "failed"]["USD_goal"]
+    success = df[df["outcome"] == "successful"]["usd_goal"]
+    failed = df[df["outcome"] == "failed"]["usd_goal"]
 
     fig = go.Figure()
 

@@ -227,8 +227,8 @@ def build_database(csv_path: Path) -> None:
             c.outcome,
             c.backers,
             ROUND(d.days) AS days,
-            ROUND(c.goal * COALESCE(cr.usd_rate, 1.0), 2) AS USD_goal,
-            ROUND(c.pledged * COALESCE(cr.usd_rate, 1.0), 2) AS USD_pledged
+            ROUND(c.goal * COALESCE(cr.usd_rate, 1.0), 2) AS usd_goal,
+            ROUND(c.pledged * COALESCE(cr.usd_rate, 1.0), 2) AS usd_pledged
         FROM v_campaign_info c
         JOIN durations d ON c.id = d.id
         LEFT JOIN currency_rate cr ON c.currency_id = cr.currency_id

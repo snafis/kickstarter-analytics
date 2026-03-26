@@ -1,8 +1,9 @@
-"""Interactive SQL cell component for educational query exploration."""
+"""Interactive SQL cell with Ace editor (syntax highlighting) and run-on-click results."""
 
 from __future__ import annotations
 
 import streamlit as st
+from streamlit_ace import st_ace
 
 from db.executor import safe_run
 
@@ -13,11 +14,11 @@ def sql_cell(
     sql: str,
     description: str = "",
     insight: str = "",
-    editable: bool = True,   # kept for API compatibility; always editable now
-    auto_run: bool = False,  # kept for API compatibility; ignored
+    editable: bool = True,   # kept for API compatibility
+    auto_run: bool = False,  # kept for API compatibility
 ) -> None:
     """
-    Render an interactive SQL cell.
+    Render an interactive SQL cell backed by an Ace editor.
 
     Parameters
     ----------
@@ -25,12 +26,11 @@ def sql_cell(
     label:       Section heading displayed above the editor.
     sql:         Default SQL text.
     description: Gray helper text shown below the heading.
-    insight:     Optional callout text rendered after the result table.
-    editable/auto_run: kept for backwards-compatibility, no longer used.
+    insight:     Optional callout rendered beneath the result table.
     """
-    sql_key = f"sql_{cell_id}"
+    sql_key    = f"sql_{cell_id}"
     result_key = f"result_{cell_id}"
-    error_key = f"error_{cell_id}"
+    error_key  = f"error_{cell_id}"
 
     if sql_key not in st.session_state:
         st.session_state[sql_key] = sql.strip()
@@ -42,13 +42,26 @@ def sql_cell(
             unsafe_allow_html=True,
         )
 
-    st.session_state[sql_key] = st.text_area(
-        label="SQL",
+    # Ace editor — SQL with syntax highlighting, GitHub-light theme
+    edited = st_ace(
         value=st.session_state[sql_key],
-        key=f"area_{cell_id}",
-        height=160,
-        label_visibility="collapsed",
+        language="sql",
+        theme="github",
+        keybinding="vscode",
+        font_size=13,
+        tab_size=4,
+        show_gutter=True,
+        show_print_margin=False,
+        wrap=False,
+        auto_update=True,
+        readonly=False,
+        key=f"ace_{cell_id}",
+        height=200,
+        min_lines=6,
     )
+    # Ace returns the current editor content on every render
+    if edited is not None:
+        st.session_state[sql_key] = edited
 
     col_btn, col_info = st.columns([1, 5])
     run_clicked = col_btn.button("▶ Run Query", key=f"btn_{cell_id}")
@@ -62,7 +75,6 @@ def sql_cell(
             st.session_state[result_key] = df
             st.session_state.pop(error_key, None)
 
-    # Only render results after an explicit Run click
     if error_key in st.session_state:
         st.error(f"SQL Error: {st.session_state[error_key]}")
     elif result_key in st.session_state:

@@ -49,6 +49,7 @@ def sql_cell(
         theme="github",
         keybinding="vscode",
         font_size=13,
+        font_family="JetBrains Mono, Fira Code, monospace",
         tab_size=4,
         show_gutter=True,
         show_print_margin=False,
